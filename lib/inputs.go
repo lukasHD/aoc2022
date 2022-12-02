@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"os"
 	"strconv"
+	"strings"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -51,6 +52,15 @@ func GroupedIntLinesOnEmpty(fname string) [][]int {
 	}
 	if len(group) > 0 {
 		out = append(out, group)
+	}
+	return out
+}
+
+func ReadTable(fname string) [][]string {
+	lines := ReadLinesToString(fname)
+	var out [][]string
+	for _, line := range lines {
+		out = append(out, strings.Split(line, " "))
 	}
 	return out
 }
